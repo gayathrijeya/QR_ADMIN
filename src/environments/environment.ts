@@ -17,8 +17,8 @@ export const environment = {
     measurementId: ''
   },
   
-  url: "https://api.scangoldqr.com/", //latest
-  // url :"https://localhost:7052/",
+  // url: "https://api.scangoldqr.com/", //latest
+  url :"https://localhost:7052/",
   baseUrl:'https://goldqrdata.s3.ap-south-1.amazonaws.com/',
 
 };
