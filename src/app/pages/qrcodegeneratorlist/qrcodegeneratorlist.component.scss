@@ -1,0 +1,55 @@
+
+.cent{
+    text-align: center;
+  }
+  .Qrcard {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+  }
+
+  body { 
+    font-family: "Open Sans", sans-serif !important;
+    margin: 0; 
+}
+
+.foo {
+    font-family: "Open Sans", sans-serif !important;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: gray;
+}
+
+.form-control {
+    font-family: "Open Sans", sans-serif !important;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: cadetblue;
+}
+.text-danger{
+    font-size: 14px;
+}
+
+
+option{
+    margin: 10px;
+    padding: 10px 15px; /* Increase padding */
+    line-height: 2;
+}
+
+.custom-select option {
+    padding: 10px 15px; /* Increase padding */
+    background-color: #f8f9fa !important; /* Light gray background */
+    color: #343a40 !important; /* Dark text color */
+    line-height: 2;
+}
+
+.custom-select .dropdown-item {
+    height: 50px; /* Set the desired height */
+    line-height: 50px; /* Center the text vertically */
+}
+
+th{
+    color: #000 !important;
+}

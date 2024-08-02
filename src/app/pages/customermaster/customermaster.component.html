@@ -1,0 +1,207 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow">     
+                <div class="card-header header-title">
+                    <div class="col-8">
+                        <strong style="color: gray;">Customer Creation</strong> 
+                    </div>  
+                </div>        
+                <div class="card-body">
+                    <div class="row">
+                                
+                        <div class="col-4 text-end">
+                            <button type="button" class="btn btn-outline-success btn-sm" routerLink="/customermasterlist">
+                               <strong>Show Customers</strong>
+                            </button>
+                        </div>                                                           
+                    </div>
+                    <hr/>
+                    <br/>                                           
+                    <form #CustomerMasters="ngForm" (ngSubmit)="CustomerMasters.form.valid && saveForm()">
+                        <div class="row">
+                            <div class="col-md-6 border-end">
+                                <div class="mb-3 row">
+                                    <div class="col-12 col-sm-12 col-md-2">
+                                        <label for="inputPassword" class="col-form-label foo">Code</label>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-10">
+                                        <input type="text" name="EmpCode" [(ngModel)]="CustomerMaster.Customer_ID"
+                                            readonly="true" class="form-control" id="empcodeInput">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <div class="col-12 col-sm-12 col-md-2">
+                                        <label for="inputPassword" class="col-form-label foo">Name</label>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-10">
+                                        <input required name="CustomerName" [(ngModel)]="CustomerMaster.Customer_Name"
+                                            type="text" class="form-control" id="nameInput" placeholder=""
+                                            #CustomerName="ngModel" required maxlength="100" minlength="3">
+                                        <span *ngIf="CustomerMasters.submitted && CustomerName.invalid">
+                                            <small class="text-danger" *ngIf="CustomerName?.errors?.['required']">Name
+                                                is Required</small>
+                                            <small class="text-danger" *ngIf="CustomerName?.errors?.['minlength']">Name
+                                                Minimum 3 Character
+                                                is Required</small>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <div class="col-12 col-sm-12 col-md-2">
+                                        <label for="PhoneNumber" class="col-form-label foo">Mobile No <span
+                                            style="color: red;">*</span></label>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-10">
+                                        <input [(ngModel)]="CustomerMaster.Mobile" name="Mobile" type="text"
+                                            maxlength="10" class="form-control" id="Number Input" minlength="10"
+                                            (keypress)="api.numberOnly($event)" placeholder=""
+                                            #Mobile="ngModel" required (focusout)="isSameMobile()">
+                                        <span *ngIf="CustomerMasters.submitted && Mobile.invalid">
+                                            <small class="text-danger" *ngIf="Mobile?.errors?.['required']">Mobile No is
+                                                Required</small>
+                                            <small class="text-danger" *ngIf="Mobile?.errors?.['minlength']">Invalid
+                                                Mobile No
+                                            </small>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <div class="col-12 col-sm-12 col-md-2">
+                                        <label for="Email" class="col-form-label foo">Email <span
+                                            style="color: red;">*</span></label>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-10">
+                                        <input [(ngModel)]="CustomerMaster.Email" email name="Email" type="text"
+                                            class="form-control" id="email Input" placeholder=""
+                                            name="EmailN" #EmailN="ngModel"
+                                            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required
+                                            maxlength="50">
+                                        <span *ngIf="CustomerMasters.submitted && EmailN.invalid">
+                                            <small class="text-danger" *ngIf="EmailN?.errors?.['pattern']">Invalid Email
+                                                Id</small>
+                                        </span>
+                                        <span *ngIf="CustomerMasters.submitted && EmailN.invalid">
+                                            <small class="text-danger" *ngIf="EmailN?.errors?.['required']">Email Is
+                                                Required</small>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <div class="col-12 col-sm-12 col-md-2">
+                                        <label for="UserName" class="col-form-label foo">User Name <span
+                                            style="color: red;">*</span></label>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-10">
+                                        <input [(ngModel)]="CustomerMaster.UserName" name="UserName" type="text"
+                                            class="form-control" id="UserName Input" required minlength="3"
+                                            placeholder="" #UserName="ngModel" maxlength="50" (focusout)="isSameUserName()" />
+                                        <span *ngIf="CustomerMasters.submitted && UserName.invalid">
+                                            <small class="text-danger" *ngIf="UserName?.errors?.['required']">UserName
+                                                is Required</small>
+                                            <small class="text-danger" *ngIf="UserName?.errors?.['minlength']">UserName
+                                                Minimum 3 Character
+                                                is Required</small>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <div class="col-12 col-sm-12 col-md-2">
+                                        <label for="Password" class="col-form-label foo">Password <span
+                                            style="color: red;">*</span></label>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-10">
+                                        <input [(ngModel)]="CustomerMaster.Password" name="Password" type="password"
+                                            class="form-control" id="Password Input" required minlength="5"
+                                            placeholder="" #Password="ngModel" maxlength="50">
+                                        <span *ngIf="CustomerMasters.submitted && Password.invalid">
+                                            <small class="text-danger" *ngIf="Password?.errors?.['required']">Password
+                                                is Required</small>
+                                            <small class="text-danger" *ngIf="Password?.errors?.['minlength']">Password
+                                                Minimum 5 Character
+                                                is Required</small>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3 row">
+                                    <div class="col-12 col-sm-12 col-md-2">
+                                        <label for="ResidentialAddress" class="col-form-label foo">Address</label>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-10">
+                                        <textarea [(ngModel)]="CustomerMaster.PermanentAddress" class="form-control"
+                                            id="FormControl" rows="3" name="Address" placeholder=""
+                                            maxlength="200"></textarea>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <div class="col-12 col-sm-12 col-md-2">
+                                        <label for="Notes" class="col-form-label foo">Notes</label>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-10">
+                                        <textarea [(ngModel)]="CustomerMaster.Notes" class="form-control"
+                                            id="FormControl" rows="3" placeholder="" name="Notes"
+                                            maxlength="500"></textarea>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <div class="col-12 col-sm-12 col-md-2">
+                                        <label for="Pincode" class="col-form-label foo">Pincode </label>
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-10">
+                                        <input [(ngModel)]="CustomerMaster.Pincode" type="text" maxlength="6"
+                                            (keypress)="api.numberOnly($event)" name="PinCode" #PinCode="ngModel"
+                                            class="form-control" id="pincodeInput" placeholder=""
+                                            minlength="6">
+                                        <span *ngIf="CustomerMasters.submitted && PinCode.invalid">
+                                            <small class="text-danger" *ngIf="PinCode?.errors?.['minlength']">Invalid
+                                                PinCode</small>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4 p-2 m-2">
+                            <button type="submit" [disabled]="!CustomerMasters.form.valid" *ngIf="!this.EditId" class="btn btn-success" (keydown.enter)="EnterKey($event)">
+                                Save & Generater Master QR Code
+                            </button>
+                            <button type="submit" [disabled]="!CustomerMasters.form.valid" *ngIf="this.EditId" class="btn btn-primary" (keydown.enter)="EnterKey($event)">
+                                Update Customer
+                            </button>
+                            <button class="btn btn-danger" style="margin-left: 20px;" (click)="ClearFn()"> Clear
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="MasterQrAndDetails" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Master Qr Code</h1>
+                <!-- <button type="button" class="btn btn-info DownloadpdfPopup" (click)="DownloadPdf()">Download</button> -->
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="ReloadFn()"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <h5>Name : {{Popup_Name}}</h5>
+                    <h5>Mobile : {{Popup_Mobile}}</h5>
+                    <h5>Customer Code : {{popUpCustomerCode}}</h5>
+
+                    <div class="mt-4 ml-5 text-center">
+                        <qrcode String [qrdata]='popupMasterQrCode' [errorCorrectionLevel]="'M'" [width]="200"></qrcode>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+.background {
+    //background: url('/assets/images/qrBack2.jpg') center/cover no-repeat;
+    background-color: white;
+    height: 80vh;
+    position: relative;
+    opacity: 1
+}
+
+.overlay {
+  //  background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.text-container {
+    text-align: center;
+    font-weight: 900;
+    color: #FFD700;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    font-size: 3rem;
+    color: #FFD700;
+    font-weight: 900;
+}
+
+.qr-code {
+    margin-top: 20px;
+}
+
+.btn {
+    width: 254px;
+    font-size: 20px;
+    background-color: #FFD700;
+    color: #000000;
+}
+
+.printPreview {
+    margin-top: -280px;
+}

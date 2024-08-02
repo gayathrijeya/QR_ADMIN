@@ -1,0 +1,65 @@
+<div class="card">
+    <div class="card-header" style="display: flex; justify-content: space-between;background-color: #fff;color: gray">
+        <div>
+            <i class="ri-file-list-fill m-2" style="font-size: 1.2rem;"></i>
+            <strong style="font-size: 1rem;">QR Report</strong>
+        </div>
+        <button type="button" class="btn btn-outline-success btn-sm" routerLink="/qrmaster">Creat New</button>
+    </div>
+    <ngx-simplebar style="height: 70vh;">
+
+        <div *ngFor="let item of data;index as i">
+            <div class="card p-2 m-2" style="background-color: aliceblue;">
+                <div class="card-body">
+                    <div style="font-weight: 600; font-size: 1rem;"># {{item.customer_ID}} - {{item.customer_Name | uppercase}}</div>
+                    <div>{{item.master_QR_ID}}</div>
+                    <div>
+                        <button class="btn btn-success btn-sm" (click)="View(item)" *ngIf="item.viewop == 0">View QR</button>
+                        <button class="btn btn-danger btn-sm" (click)="Hide(item)" *ngIf="item.viewop == 1">Hide</button>
+                    </div>
+                    <!-- -->
+                    <ng-container *ngIf="sub_data.length > 0  && item.viewop == 1" class="m-2">
+                        <div class="m-2">
+                            <table  class="table table-hover table-nowrap mb-0  table-bordered" style="background-color: #fff;">
+                                <thead class="list table-dark ">
+                                    <tr>
+                                        <th class="postion-sticky">Sno</th>
+                                        <th class="postion-sticky">Customer ID</th>
+                                        <th class="postion-sticky">Customer URL</th>         
+                                        <th class="postion-sticky">Customer QR</th>                                   
+                                    </tr>
+                                </thead>
+                                <tbody>                            
+                                    <tr *ngFor="let e of sub_data;index as i">
+                                        <td >{{i+1}}</td>
+                                        <td>{{e.end_Customer_ID}}</td>
+                                        <td>{{e.end_Customer_QR }}</td>   
+                                        <td>  <qrcode String [qrdata]='e.end_Customer_QR' [errorCorrectionLevel]="'M'" [width]="100"></qrcode></td>                                                                                              
+                                        <!-- <td>
+                                            <button class="btn btn-link">
+                                                <i class="ri-edit-2-fill" style="font-size: 1.4rem;" (click)="Edit(e.id)"></i>
+                                            </button>
+                                            <button class="btn btn-link" (click)="Delete(e.id)">
+                                                <i class="ri-delete-bin-2-fill" style="font-size: 1.4rem; color:red"></i>
+                                            </button>
+                                        </td> -->
+                                    </tr>                                
+                                    <tr *ngIf="data.length == 0">
+                                        <td colspan="9" class="text-center">
+                                            <img src="assets/images/nodatafound.png" width="20%" height="20%">
+                                            <h4 class="text-center text-danger"> No Records Found </h4>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+
+
+      
+    </ngx-simplebar>
+  
+</div>

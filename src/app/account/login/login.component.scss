@@ -1,0 +1,122 @@
+.content {
+    background:#feed78;
+    min-height: 100vh;
+    max-width: 100vw;
+    place-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.fw-900{
+    font-weight: 900;
+    color: red !important;
+    font-size: 18px;
+}
+
+.bg-warning{
+    background: #fadc0c !important;
+    color: #000 !important;
+    font-weight: 700 !important;
+}
+
+.logo {
+    width: 250px;
+    margin-bottom: 25px;
+
+}
+
+.card {
+    max-width: 400px;
+    min-height: 500px;
+    max-height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+@media screen and (max-width:425px) {
+    .card {
+        max-width: 300px;
+
+    }
+
+    button {
+        font-size: 10px;
+    }
+
+    h3 {
+        font-size: 14px;
+    }
+}
+
+mat-icon {
+    transform: translate(10px, 10px);
+    position: absolute;
+    right: 10px;
+    top: 2px;
+}
+
+.btn {
+    width: 150px;
+    height: 35px;
+    font-size: smaller;
+    background-color: #008fe2 ;
+    border: none;
+    transition: 0.5s ease;
+    color: whitesmoke;
+    height: 40px;
+}
+.btn:hover
+{
+    background-color:#f5458c;
+    color: whitesmoke;
+}
+.custom-error {
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    
+  }
+.visible
+{
+    visibility: visible;
+   
+}
+  
+.hidden
+{
+    visibility: hidden;
+}
+
+.register-link {
+    text-decoration: underline !important;
+    cursor: pointer !important;
+    color: blue !important;
+}
+
+body { 
+    font-family: "Open Sans", sans-serif !important;
+    margin: 0; 
+}
+
+.foo {
+    font-family: "Open Sans", sans-serif !important;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: gray;
+}
+
+.form-control {
+    font-family: "Open Sans", sans-serif !important;
+    font-weight: 600;
+    font-size: 0.8rem;
+    //color: cadetblue;
+}
+
+.text-danger{
+    font-size: 14px;
+}
+

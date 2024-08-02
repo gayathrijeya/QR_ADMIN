@@ -1,0 +1,113 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow ">   
+                <div class="card-header header-title">
+                    <div class="col-8">
+                        <strong style="color: gray;">Application Creation</strong> 
+                    </div>   
+                </div>          
+                <div class="card-body ">
+                    <div class="row ">
+                                
+                        <div class="col-4 text-end">
+                            <!-- <button type="button" class="btn btn-outline-success btn-sm" routerLink="/customermasterlist">
+                               <strong>Show Customers</strong>
+                            </button> -->
+                        </div>                                                           
+                    </div>
+                    <hr/>
+                    <br/>                                           
+                    <div>
+                        <form #appMasterModelsForm="ngForm"  (ngSubmit)="appMasterModelsForm.form.valid && saveForm()">
+                            <div class="row">
+                                <div class="col-md-6">                                
+                                    <div class="mb-3 row">
+                                        <div class="col-12 col-sm-12 col-md-3">
+                                            <label for="inputPassword" class="col-form-label foo">App Name <span class="text-danger">*</span> </label>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-9">
+                                            <input type="text"  name="App_Name" [(ngModel)]="appMasterModel.App_Name" #appName="ngModel" class="form-control" id="name" required />
+                                            <span *ngIf="appMasterModelsForm.submitted && appName.invalid">
+                                                <small class="text-danger mt-1" *ngIf="appName?.errors?.['required']">Application Name
+                                                    is Required</small>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <div class="col-12 col-sm-12 col-md-3">
+                                            <label for="inputPassword" class="col-form-label foo">Sub Domain Name <span class="text-danger">*</span> </label>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-9">
+                                            <input type="text" name="Sub_Domain_Name" [(ngModel)]="appMasterModel.Sub_Domain_Name" #DomainName="ngModel" class="form-control" id="subdomain" required>
+                                            <span *ngIf="appMasterModelsForm.submitted && DomainName.invalid">
+                                                <small class="text-danger mt-1" *ngIf="DomainName?.errors?.['required']">Sub Domain Name
+                                                    is Required</small>
+                                            </span>
+                                        </div>
+                                    </div>                                 
+                                </div>
+                            </div>
+                            <div class="row">
+                                 <div class="col-6">
+                                    <div class="text-center mt-4 p-2 m-2">
+                                        <button type="submit" class="btn btn-success" >
+                                            {{buttonName}}
+                                        </button>
+                                        <!-- <button type="submit" *ngIf="this.appMasterModel.App_Code" class="btn btn-primary" (click)="updateForm()">
+                                            Update
+                                        </button> -->
+                                        <button class="btn btn-danger" style="margin-left: 20px;" (click)="ClearFn()"> Clear
+                                        </button>
+                                    </div>
+                                 </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div>
+                        <ngx-simplebar style="height: 50vh;">
+                            <table class="table table-hover table-nowrap mb-0  table-bordered table-responsive">
+                                <thead class="list table-dark ">
+                                    <tr>
+                                        <th class="postion-sticky">Action</th>      
+                                        <th  class="postion-sticky">S.NO</th>                              
+                                        <th  class="postion-sticky">ID</th>
+                                        <th  class="postion-sticky">Name</th>
+                                        <th  class="postion-sticky">Sub Domain</th>
+                                        <th  class="postion-sticky">Status</th>                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngIf="appdata?.length > 0">
+                                        <tr *ngFor="let e of appdata;index as i">
+                                            <td>
+                                                <button class="btn btn-link btn-sm" (click)="onUpdate(e)">
+                                                    <i class="ri-edit-2-fill" style="font-size: 1.2rem;"></i>
+                                                </button>                                           
+                                                <!-- <button class="btn bg-success text-white btn-sm" [ngClass]="{'bg-danger':e.isDeactive == '0','bg-success':e.isDeactive == '1'}" (click)="IsActive(e.id,e)">
+                                                {{e.isDeactive == '0' ? 'DeActive' : 'Active'}}
+                                                </button>                                             -->
+                                            </td>
+                                            <td>{{i+1}}</td>
+                                            <td>{{e.app_Code}}</td>
+                                            <td>{{e.app_Name | uppercase }}</td>
+                                            <td>{{e.sub_Domain}}</td>
+                                            <td>{{e.is_Active}}</td>                                                       
+                                        </tr>
+                                    </ng-container>
+                                    <tr *ngIf="appdata?.length == 0" class="text-center">
+                                        <td colspan="7">
+                                            <img src="assets/images/nodatafound.png" width="20%" height="20%">
+                                            <h4 class="text-center text-danger"> No Records Found </h4>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </ngx-simplebar>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

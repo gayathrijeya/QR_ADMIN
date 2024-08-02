@@ -1,0 +1,72 @@
+<div class="card"> 
+    <div class="card-body">
+        <div class="row">
+            <div class="col-8">
+                <strong style="color: gray;">Customer List</strong> 
+            </div>             
+            <div class="col-4 text-end">
+                <button type="button" class="btn btn-outline-success btn-sm" routerLink="/customermaster">
+                   <strong>Add New Customer</strong>
+                </button>
+            </div>                                                           
+        </div>
+        <hr/>
+        <br/>           
+   
+        <div >
+            <ngx-simplebar style="height: 70vh;">
+                <table class="table table-hover table-nowrap mb-0  table-bordered table-responsive">
+                <thead class="list table-dark ">
+                    <tr>
+                        <th class="postion-sticky">Action</th>
+                        <th class="postion-sticky">S.NO</th>
+                        <th class="postion-sticky">ID</th>
+                        <th class="postion-sticky">Name</th>
+                        <th class="postion-sticky">Email</th>
+                        <th class="postion-sticky">Mobile</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngIf="data.length > 0">
+                        <tr *ngFor="let e of data;index as i">
+                            <td>
+                                <button class="btn btn-link btn-sm" (click)="onUpdate(e.id)">
+                                    <i class="ri-edit-2-fill" style="font-size: 1.2rem;"></i>
+                                </button>
+                                <button class="btn btn-link btn-sm" (click)="onDelete(e.id)">
+                                    <i class="ri-delete-bin-2-fill" style="font-size: 1.2rem; color:red"></i>
+                                </button>
+                                <button class="btn bg-success text-white btn-sm" [ngClass]="{'bg-danger':e.isDeactive == '0','bg-success':e.isDeactive == '1'}" (click)="IsActive(e.id,e)">
+                                {{e.isDeactive == '0' ? 'DeActive' : 'Active'}}
+                                </button>
+                                <!-- Dropdown Variant -->
+                                <!-- <div class="dropdown">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                                    Dropdown button
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Link 1</a></li>
+                                    <li><a class="dropdown-item" href="#">Link 2</a></li>
+                                    <li><a class="dropdown-item" href="#">Link 3</a></li>
+                                    </ul>
+                                </div> -->
+                            </td>
+                            <td>{{i+1}}</td>
+                            <td>{{e.customer_ID}}</td>
+                            <td>{{e.customer_Name | uppercase }}</td>
+                            <td>{{e.email}}</td>
+                            <td>{{e.mobile}}</td>                                                       
+                        </tr>
+                    </ng-container>
+                    <tr *ngIf="data.length == 0" class="text-center">
+                        <td colspan="7">
+                            <img src="assets/images/nodatafound.png" width="20%" height="20%">
+                            <h4 class="text-center text-danger"> No Records Found </h4>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </ngx-simplebar>
+        </div>
+    </div>
+</div>

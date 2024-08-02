@@ -1,0 +1,49 @@
+<div class="card">
+    <div class="card-header "
+        style="display: flex; justify-content: space-between;background-color :#2077cf;color: white;">
+        <div>
+            <i class="ri-file-list-fill m-2" style="font-size: 1.2rem;"></i>
+            <strong style="font-size: 1.2rem;">
+                Customer List</strong>
+        </div>
+        <button type="button" class="btn btn-outline-light" routerLink="/user">Creat New
+        </button>
+    </div>
+    <table class="table table-hover table-nowrap mb-0  table-bordered   ">
+        <thead class="list table-dark ">
+            <tr>
+                <th>Sno</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>PhoneNumber</th>
+                <th>Pincode</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngIf="data.length > 0">
+                <tr *ngFor="let e of data;index as i">
+                    <td>{{i+1}}</td>
+                    <td>{{e.name | uppercase }}</td>
+                    <td>{{e.email}}</td>
+                    <td>{{e.mobile}}</td>
+                    <td>{{e.pincode}}</td>
+                    <td>
+                        <button class="btn btn-link" (click)="onUpdate(e.id)">
+                            <i class="ri-edit-2-fill" style="font-size: 1.4rem;"></i>
+                        </button>
+                        <button class="btn btn-link" (click)="onDelete(e.id)">
+                            <i class="ri-delete-bin-2-fill" style="font-size: 1.4rem; color:red"></i>
+                        </button>
+                    </td>
+                </tr>
+            </ng-container>
+            <tr *ngIf="data.length == 0" class="text-center">
+                <td colspan="7">
+                    <img src="assets/images/nodatafound.png" width="20%" height="20%">
+                    <h4 class="text-center text-danger"> No Records Found </h4>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

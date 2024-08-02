@@ -1,0 +1,60 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-header p-3 text-dark header-title"
+                    style="display: flex; justify-content: space-between;">
+                    <div>
+                        <h4 class="text-dark mb-0">
+                            <i class="mdi mdi-gamepad-round-outline me-2"></i> <strong>Add Banner</strong>
+                        </h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="content-custom">
+                        <div class="card custom-card">
+                            <div class="card-body">
+                                <div class="row m-0 p-0">
+                                    <div class="col-sm-6 col-md-6 col-lg-6">
+                                        <form [formGroup]="GForm" >
+                                            <div class="row m-0 p-0">
+                                                <div class="m-0 p-0" style="margin-left: 6px !important">
+
+                                                </div>
+                                                <div class="col-12 m-0 p-0">
+
+                                                </div>
+                                                <div class="col-12 m-0 p-0 ">
+                                                    <div class="img-box">
+                                                        <img class="img" [src]="filePreview" alt="Selected Image" />
+                                                    </div>
+                                                    <input type="file" class="form-control w-50 mt-2" accept=".png,.jpg,.jpeg,.tiff"
+                                                        (change)="onFileChange($event)" />
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <div class="text-center mt-3">
+                                            <button type="submit" class="btn btn-outline-success" (click)="getUrlpath()">
+                                                Save
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 col-lg-6">
+                                        <div class="row justify-content-center ">
+                                            <div class="col-sm-12 col-md-12 col-lg-6" *ngIf="Bannerurl">
+                                                <img [src]="Bannerurl" class="custom-img img-fluid" alt="Images">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

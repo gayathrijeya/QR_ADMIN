@@ -1,0 +1,153 @@
+<div class="card">
+    <div class="card-header header-title">
+        <div class="col-8">
+            <strong style="color: gray;">Customer Wise QR List</strong>
+        </div>
+    </div>
+    <div class="card-body ">
+        <div class="row">
+            <div class="col-4 text-end">
+                <button type="button" class="btn btn-outline-success btn-sm" routerLink="/qrmaster">
+                    <strong>Creat New QR</strong>
+                </button>
+            </div>
+        </div>
+        <hr />
+        <br />
+
+        <div class="row align-items-center ">
+            <div class="col-xxl-12">
+                <div class="row">
+                    <div class="col-xxl-5">
+                        <label for="name" class="form-label">Select Customer</label>
+                        <select class="form-select custom-select" style="color: brown;"
+                            aria-label="Default select example" [(ngModel)]="ngEmpDrop" (change)="onSelectEmpCode()">
+                            <option selected disabled>Select Customer Name</option>
+                            <option value="{{e.customer_ID}}" *ngFor="let e of empCodes">{{e.customer_Name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-xxl-5">
+                        <label for="name" class="form-label">Select Project</label>
+                        <select class="form-select form-select-md mb-3" aria-label="Default select example"
+                            [(ngModel)]="ngProjectDrop">
+                            <option selected disabled value="{{-1}}" style="line-height: 3;height: 10px !important;">
+                                Select Project</option>
+                            <option value="{{e.master_QR_ID}}" *ngFor="let e of projectNames">
+                                {{e.project_Name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-xxl-2">
+                        <div style="margin-top: 25px;">
+                            <button type="button" class="btn btn-outline-success btn-sm"
+                                style="padding-top:10px;padding-bottom: 10px;margin-bottom: 10px;"
+                                (click)="GetQrList(ngProjectDrop)">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xxl-4 align-items-center" *ngIf="MasterQr != ''">
+                <div class="column">
+                    <div class="card Qrcard">
+                        <label for="name" class="form-label">Master QrCode</label>
+                        <qrcode String [qrdata]='MasterQr' [errorCorrectionLevel]="'M'" [width]="100"></qrcode>
+                        <h4>{{MasterQrCodeId}}</h4>
+                        <button type="button" class="btn btn-outline-success  " (click)="downloadAllQr()">Download
+                            QR
+                        </button>
+                    </div>
+                </div>
+                <!-- <div class="row align-items-center">
+                    <div class="col-6">
+                      
+                    </div>
+                    <div class="col-6">
+                        <button type="button" class="btn btn-outline-success  " (click)="downloadAllQr()">Download QR
+                        </button>
+                    </div>
+                </div> -->
+            </div>
+            <!-- <div class="col-xxl-3 col-md-6 d-flex justify-content-center">
+                <div class="">
+                    <div class="">
+                        <h4 class="card-title mb-0">Employee Image</h4>
+                    </div>
+                    <div class="col-lg-2 col-md-3 mt-2 mx-4">
+                        <div class="text-center">
+                            <div class="position-relative d-inline-block">
+                                <div
+                                    class="position-absolute top-100 start-100 translate-middle">
+                                    <label for="product-image-input0" class="mb-0"
+                                        placement="right" ngbTooltip="Select Image">
+                                        <div class="avatar-xs">
+                                            <div
+                                                class="avatar-title bg-light border rounded-circle text-muted cursor-pointer">
+                                                <i class="ri-image-fill"></i>
+                                            </div>
+                                        </div>
+                                    </label>
+                                    <input class="form-control d-none" value=""
+                                        id="product-image-input0" type="file"
+                                        accept="image/png, image/gif, image/jpeg"
+                                        >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-nowrap mb-0  table-bordered  mt-2 ">
+            <thead class="list table-dark ">
+                <tr>
+                    <th>Sno</th>
+                    <th>Application Name</th>
+                    <th>Project Date</th>
+                    <th>Project Name</th>
+                    <th>Customer Name</th>
+                    <th class="cent">PhoneNumber</th>
+                    <th class="cent">Customer code</th>
+                    <th class="cent">QrCode Id</th>
+                    <th class="cent">Qr Code</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngIf="GridList.length > 0">
+                    <tr *ngFor="let e of GridList ;index as i">
+                        <td>{{i+1}}</td>
+                        <td>{{e.applicationName}}</td>
+                        <td>{{e.project_Date |date :'dd-MM-yyyy'}}</td>
+                        <td>{{e.project_Name}}</td>
+                        <td>{{e.customer_Name | uppercase }}</td>
+                        <td class="cent">{{e.mobile|| '---' }}</td>
+                        <td class="cent">{{e.customer_ID|| '---' }}</td>
+                        <td class="cent">{{e.end_Customer_ID|| '---' }}</td>
+                        <td class="cent">
+                            <qrcode String [qrdata]='e.end_Customer_QR' [errorCorrectionLevel]="'M'" [width]="100">
+                            </qrcode>
+                        </td>
+                        <!-- <td>{{e.project_Description}}</td> -->
+                        <td>
+                            <span [title]="e.project_Description" data-toggle="tooltip" data-placement="top">
+                                {{e.project_Description?.length > 20 ? (e.project_Description | slice:0:20) + '...' :
+                                e.project_Description}}
+                            </span>
+                        </td>
+                    </tr>
+                </ng-container>
+                <tr *ngIf="GridList.length == 0">
+                    <td colspan="9" class="text-center">
+                        <img src="assets/images/nodatafound.png" width="20%" height="20%">
+                        <h4 class="text-center text-danger"> Select Customer </h4>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
